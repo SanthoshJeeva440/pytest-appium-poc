@@ -1,0 +1,5 @@
+pytest
+Appium-Python-Client
+pytest-html
+pytest-xdist
+black

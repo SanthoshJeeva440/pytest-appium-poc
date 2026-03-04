@@ -1,0 +1,19 @@
+{
+  "server" : {
+    "address": "127.0.0.1",
+    "port" : 4723,
+    "allow-cors": true,
+    "base-path": "/wd/hub",
+    "keep-alive-timeout": 600,
+    "local-timezone": true,
+    "log": "/tmp/appium.log",
+    "log-level": "info",
+    "log-no-colors": false,
+    "log-timestamp": true,
+    "long-stacktrace": false,
+    "no-perms-check": false,
+    "use-plugins": ["inspector"],
+    "allow-insecure": [
+      "*:chromedriver_autodownload"
+    ]
+}

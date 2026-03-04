@@ -1,0 +1,19 @@
+{
+  "name": "pytest-appium-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@appium/images-plugin": "^4.1.0",
+    "appium": "^3.2.0",
+    "appium-espresso-driver": "^7.0.0",
+    "appium-inspector-plugin": "^2026.2.1",
+    "appium-mcp": "^1.21.2",
+    "appium-uiautomator2-driver": "^7.0.0"
+  }
+}
