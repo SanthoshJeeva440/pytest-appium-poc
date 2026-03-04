@@ -50,6 +50,7 @@ jobs:
           name: Check ADB Devices
           command: |
             adb devices
+            adb shell getprop ro.build.version.release
             if adb devices | grep -q "emulator"; then
               echo "Emulator is running ✅"
             else
