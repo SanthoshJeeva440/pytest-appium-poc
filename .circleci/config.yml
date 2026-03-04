@@ -1,0 +1,49 @@
+version: 2.1
+
+orbs:
+  android: circleci/android@2.5.0
+
+jobs:
+  android-instrumentation-tests:
+    executor:
+      name: android/android-machine
+      resource-class: large
+      tag: 2023.10.1   # Stable Android image
+
+    environment:
+      GRADLE_OPTS: -Dorg.gradle.jvmargs="-Xmx3g"
+
+    steps:
+      - checkout
+
+      # Restore Gradle cache
+      - restore_cache:
+          keys:
+            - gradle-v1-{{ checksum "build.gradle" }}
+            - gradle-v1-
+
+      # Install dependencies
+      - run:
+          name: Download dependencies
+          command: ./gradlew androidDependencies
+
+      # Start emulator and run tests
+      - android/start-emulator-and-run-tests:
+          system-image: system-images;android-30;google_apis;x86_64
+          avd-name: test
+          no-window: true
+          gpu: swiftshader_indirect
+          post-emulator-launch-assemble-command: ./gradlew assembleDebug assembleDebugAndroidTest
+          test-command: ./gradlew connectedDebugAndroidTest
+
+      # Save Gradle cache
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: gradle-v1-{{ checksum "build.gradle" }}
+
+workflows:
+  version: 2
+  android-workflow:
+    jobs:
+      - android-instrumentation-tests
